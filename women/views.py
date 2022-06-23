@@ -8,23 +8,12 @@ from women.models import Women
 from women.serializers import WomenSerializer
 
 
-# class WomenAPIView(generics.ListAPIView):
-#     queryset = Women.objects.all()
-#     serializer_class = WomenSerializer
+class WomenAPIList(generics.ListCreateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
 
 
 class WomenAPIView(APIView):
-    def get(self, request):
-        w = Women.objects.all()
-        return Response({'posts': WomenSerializer(w, many=True).data})
-
-    def post(self, request):
-        serializer = WomenSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response({'post': serializer.data})
-
     def put(self, request, *args, **kwargs):
         pk = kwargs.get('pk', None)
         if not pk:
