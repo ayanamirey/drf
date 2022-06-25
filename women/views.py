@@ -1,13 +1,8 @@
-from django.forms import model_to_dict
-from rest_framework import generics, viewsets
-from django.shortcuts import render
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 from women.models import Women, Category
 from women.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from women.serializers import WomenSerializer
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class WomenAPIList(generics.ListCreateAPIView):
